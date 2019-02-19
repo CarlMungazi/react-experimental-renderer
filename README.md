@@ -2,21 +2,7 @@
 
 > A custom React renderer
 
-A custom React renderer
-
-## Install
-
-```
-$ npm install react-experimental-renderer
-```
-
-## Usage
-
-Examples to follow.
-
-# Docs
-
-[Documentation](http://carlmungazi.github.io/react-experimental-renderer)
+A custom React renderer which does nothing much
 
 ## License
 
