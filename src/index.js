@@ -1,12 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+// import ReactDOM from 'react-dom';
+import ReactExperimentalRenderer from './renderer';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const Text = props => {
+  return <p className={props.className}>{props.content}</p>
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+class App extends React.Component {
+  state = {
+    text: Date.now(),
+  }
+
+  onButtonClick = () => {
+    this.setState(() => ({ text: Date.now() }))
+  }
+
+  render() {
+    return (
+      <div>
+        <Text className="hello-class" content={this.state.text} />
+        <span style="color: blue;" autofocus>World</span>
+        <button onClick={this.onButtonClick}>Get Current Time</button>
+      </div>
+    )
+  }
+}
+
+// ReactDOM.render(<App />, document.getElementById('root'));
+ReactExperimentalRenderer.render(<App />, document.getElementById('root'));
