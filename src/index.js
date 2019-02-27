@@ -1,30 +1,29 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 import ReactExperimentalRenderer from './renderer';
 
-const Text = props => {
-  return <p className={props.className}>{props.content}</p>
-}
+import BasicRenderer from './examples/BasicRenderer';
+import TimeSlicing from './examples/time-slicing/TimeSlicingDemo';
 
-class App extends React.Component {
-  state = {
-    text: Date.now(),
-  }
+const container = document.getElementById('root');
 
-  onButtonClick = () => {
-    this.setState(() => ({ text: Date.now() }))
-  }
+// ReactExperimentalRenderer.render(<BasicRenderer />, container);
+ReactDOM.render(
+  <React.unstable_ConcurrentMode>
+    <TimeSlicing />
+  </React.unstable_ConcurrentMode>,
+  container
+);
 
-  render() {
-    return (
-      <div>
-        <Text className="hello-class" content={this.state.text} />
-        <span style="color: blue;" autofocus>World</span>
-        <button onClick={this.onButtonClick}>Get Current Time</button>
-      </div>
-    )
-  }
-}
-
-// ReactDOM.render(<App />, document.getElementById('root'));
-ReactExperimentalRenderer.render(<App />, document.getElementById('root'));
+// The code above is equivalent to the code below
+// ReactDOM.render(
+//   React.createElement(
+//     React.unstable_ConcurrentMode, 
+//     null, 
+//     React.createElement(
+//       TimeSlicing, 
+//       null
+//     )
+//   ), 
+//   container
+// );

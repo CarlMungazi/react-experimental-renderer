@@ -1,5 +1,5 @@
 /**
-  This renderer does the bare minimum to update the example application
+  This renderer does the bare minimum needed to update the example application
 */
 
 const Reconciler = require('react-reconciler');
