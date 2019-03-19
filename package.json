@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "lodash": "^4.17.11",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-experimental-input": "^1.0.2",
     "react-reconciler": "^0.20.0",
     "react-scripts": "2.1.5",
     "scheduler": "^0.10.0",
