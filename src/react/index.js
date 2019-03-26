@@ -1,4 +1,6 @@
-const REACT_ELEMENT_TYPE = require('./symbols');
+import { REACT_ELEMENT_TYPE } from './symbols';
+import ReactNoopUpdateQueue from './ReactNoopUpdateQueue';
+
 
 const Fiber = {
   tag: null,
@@ -56,6 +58,14 @@ const ReactCurrentOwner = {
   current: (null | Fiber),
 };
 
+function hasValidRef(config) {
+  return config.ref !== undefined;
+}
+
+function hasValidKey(config) {
+  return config.key !== undefined;
+}
+
 function createElement(type, config, children) {
   let propName;
 
@@ -68,8 +78,12 @@ function createElement(type, config, children) {
   let source = null;
 
   if (config != null) {
+    if (hasValidRef(config)) {
       ref = config.ref;
+    }
+    if (hasValidKey(config)) {
       key = '' + config.key;
+    }
 
     self = config.__self === undefined ? null : config.__self;
     source = config.__source === undefined ? null : config.__source;
@@ -119,7 +133,7 @@ function Component (props, context, updater) {
   this.props = props;
   this.context = context;
   this.refs = {}; // in dev environments, this object is frozen - why?
-  this.updater = updater;
+  this.updater = updater || ReactNoopUpdateQueue;
 }
 
 Component.prototype.isReactComponent = {};
@@ -139,4 +153,4 @@ const React = {
   createElement
 }
 
-module.exports = React;
+export default React;
